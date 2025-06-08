@@ -1,17 +1,23 @@
-name: RSS Pushover Checker
+name: RSS Feed Checker
 
 on:
   schedule:
-    - cron: '*/5 * * * *' # every 5 minutes, adjust as you want
+    - cron: '*/5 * * * *'   # Every 5 minutes
   workflow_dispatch:
 
 jobs:
-  check_rss:
+  rss_check:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+
+      - name: Restore notified cache
+        uses: actions/cache@v3
+        id: cache
+        with:
+          path: notified.json
+          key: rss-notified-${{ runner.os }}
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -19,11 +25,17 @@ jobs:
           node-version: '18'
 
       - name: Install dependencies
-        run: npm install
+        run: npm install xml2js node-fetch
 
-      - name: Run RSS check script
+      - name: Run RSS checker
         env:
           PUSHOVER_APP_TOKEN: ${{ secrets.PUSHOVER_APP_TOKEN }}
           PUSHOVER_USER_KEY: ${{ secrets.PUSHOVER_USER_KEY }}
-          RSS_URL: "https://example.com/yourfeed.rss" # Replace with your RSS feed URL
         run: node rss-check.js
+
+      - name: Save notified cache
+        uses: actions/cache@v3
+        if: always()
+        with:
+          path: notified.json
+          key: rss-notified-${{ runner.os }}
