@@ -1,0 +1,8 @@
+{
+  "name": "rss-pushover-checker",
+  "version": "1.0.0",
+  "dependencies": {
+    "node-fetch": "^3.3.1",
+    "xml2js": "^0.4.23"
+  }
+}
