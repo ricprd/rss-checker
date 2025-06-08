@@ -12,14 +12,14 @@ const feeds = [
     url: "https://www.whentostream.com/news?format=rss",
     filters: ["digital streaming"]
   },
-  {
-    url: "https://feed2.com/rss",
-    filters: ["another sentence", "taxis", "third sentence"]
-  },
-  {
-    url: "https://feed3.com/rss",
-    filters: ["focus"]
-  }
+//  {
+//    url: "https://feed2.com/rss",
+//    filters: ["another sentence", "taxis", "third sentence"]
+//  },
+//  {
+//    url: "https://feed3.com/rss",
+//    filters: ["focus"]
+//  }
 ];
 
 // Send notification to Pushover
