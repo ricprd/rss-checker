@@ -56,7 +56,7 @@ async function checkFeed(feed) {
       const link = item.link[0];
 
       // Check if any filter phrase matches exactly in the title (case-insensitive)
-      const matched = feed.filters.some(phrase =>
+      const matched = feed.filters.length === 0 || feed.filters.some(phrase =>
         title.toLowerCase().includes(phrase.toLowerCase())
       );
 
