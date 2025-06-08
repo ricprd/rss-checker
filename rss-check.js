@@ -24,7 +24,7 @@ if (fs.existsSync(notifiedFile)) {
 const feeds = [
   {
     url: "https://www.whentostream.com/news?format=rss",
-    filters: ["digital streaming", "teaser trailer"]
+    filters: ["digital streaming"]
   },
   // {
   //   url: "https://feed2.com/rss",
