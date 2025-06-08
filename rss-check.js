@@ -18,7 +18,7 @@ const feeds = [
 //  },
 //  {
 //    url: "https://feed3.com/rss",
-//    filters: ["focus"]
+//    filters: [] // Left blank, it will notify for every entry
 //  }
 ];
 
