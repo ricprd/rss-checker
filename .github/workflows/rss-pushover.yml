@@ -1,0 +1,29 @@
+name: RSS Pushover Checker
+
+on:
+  schedule:
+    - cron: '*/5 * * * *' # every 5 minutes, adjust as you want
+  workflow_dispatch:
+
+jobs:
+  check_rss:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run RSS check script
+        env:
+          PUSHOVER_APP_TOKEN: ${{ secrets.PUSHOVER_APP_TOKEN }}
+          PUSHOVER_USER_KEY: ${{ secrets.PUSHOVER_USER_KEY }}
+          RSS_URL: "https://example.com/yourfeed.rss" # Replace with your RSS feed URL
+        run: node rss-check.js
